@@ -18,10 +18,10 @@ class OtoroshiComponent(ApplicationSession):
 
         for command in self.commands:
             if isinstance(command, Failure):
-                print("Failed to register procedure: {}".format(command))
+                print "Failed to register procedure: %s" % command
             else:
-                print("registration ID {}: {}".format(
-                    command.id, command.procedure))
+                print "registration ID %s: %s" % (
+                    command.id, command.procedure)
 
     @inlineCallbacks
     def registerAll(self):
