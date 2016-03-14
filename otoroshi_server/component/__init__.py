@@ -14,7 +14,7 @@ class OtoroshiComponent(ApplicationSession):
 
     @inlineCallbacks
     def onJoin(self, details):
-        yield self.registerAll()
+        yield self.register_all()
 
         for command in self.commands:
             if isinstance(command, Failure):
@@ -24,6 +24,6 @@ class OtoroshiComponent(ApplicationSession):
                     command.id, command.procedure)
 
     @inlineCallbacks
-    def registerAll(self):
+    def register_all(self):
         interact = yield self.register(InteractComponent())
         self.commands.extend(interact)
