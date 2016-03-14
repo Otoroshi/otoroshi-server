@@ -1,0 +1,10 @@
+# Virtualenv
+bin/
+include/
+lib/
+lib64
+
+# Cache files
+*.pyc
+*.swp
+pip-selfcheck.json
