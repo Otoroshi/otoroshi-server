@@ -8,3 +8,6 @@ lib64
 *.pyc
 *.swp
 pip-selfcheck.json
+
+# Config file
+config.ini
