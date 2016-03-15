@@ -1,7 +1,7 @@
+# -*- coding: utf-8 -*-
+from autobahn.twisted.wamp import ApplicationSession
 from twisted.internet.defer import inlineCallbacks
 from twisted.python.failure import Failure
-from autobahn.twisted.wamp import ApplicationSession
-
 from otoroshi_server.component.interact import InteractComponent
 
 

@@ -1,5 +1,6 @@
-from ConfigParser import SafeConfigParser
+# -*- coding: utf-8 -*-
 import codecs
+from ConfigParser import SafeConfigParser
 import os
 
 

@@ -1,8 +1,8 @@
+# -*- coding: utf-8 -*-
 from os import environ
 
 from autobahn.twisted.wamp import ApplicationRunner
 from sqlalchemy import create_engine
-
 from .config import Config
 from otoroshi_server.component import OtoroshiComponent
 
