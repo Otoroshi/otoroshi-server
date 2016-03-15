@@ -1,7 +1,26 @@
 #!/usr/bin/env python
 
+import argparse
+import sys
+
 from otoroshi_server import Otoroshi
+
+parser = argparse.ArgumentParser(description='Run the Otoroshi Server')
+parser.add_argument('command', choices=['init', 'run'])
+args = parser.parse_args()
 
 app = Otoroshi()
 app.config.from_env('OTOROSHI_CONFIG')
-app.run()
+
+
+def command_init():
+    app.db.init_app(app)
+    app.db.drop_all()
+    app.db.create_all()
+
+
+def command_run():
+    app.run()
+
+# Run the command
+getattr(sys.modules[__name__], "command_%s" % args.command)()

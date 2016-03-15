@@ -30,5 +30,8 @@ app.run()
 
 or use the provided script as follow :
 ```
-env OTOROSHI_CONFIG=./config.ini ./otoroshi
+# Create the database
+env OTOROSHI_CONFIG=./config.ini ./otoroshi init
+# Run the server
+env OTOROSHI_CONFIG=./config.ini ./otoroshi run
 ```
