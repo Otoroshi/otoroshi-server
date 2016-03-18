@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 from autobahn.twisted.wamp import ApplicationSession
+from autobahn.wamp import types
 from twisted.internet.defer import inlineCallbacks
 from twisted.python.failure import Failure
-from otoroshi_server.component.interact import InteractComponent
+from .interact import InteractComponent
 
 
-class OtoroshiComponent(ApplicationSession):
-    """
-    Otoroshi Server Component that register all RPC and PUBSUB endpoints
+class ComponentManager(ApplicationSession):
+    """ Otoroshi Server Component Manager that register all RPC and PUBSUB
+    endpoints
     """
 
     commands = []
@@ -25,5 +26,8 @@ class OtoroshiComponent(ApplicationSession):
 
     @inlineCallbacks
     def register_all(self):
-        interact = yield self.register(InteractComponent())
-        self.commands.extend(interact)
+        components = [InteractComponent]
+        for component in components:
+            command = yield self.register(
+                component(self.config.extra['app']))
+            self.commands.extend(command)

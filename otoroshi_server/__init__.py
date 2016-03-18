@@ -4,7 +4,7 @@ from os import environ
 from autobahn.twisted.wamp import ApplicationRunner
 from sqlalchemy import create_engine
 from .config import Config
-from .component import OtoroshiComponent
+from .component import ComponentManager
 from .db import Db
 from .model import *
 
@@ -28,5 +28,6 @@ class Otoroshi(object):
         self.application = ApplicationRunner(
             self.config.get('autobahn', 'rooter'),
             self.config.get('autobahn', 'realm'),
-            debug=False)
-        self.application.run(OtoroshiComponent)
+            debug=False,
+            extra={"app": self})
+        self.application.run(ComponentManager)
