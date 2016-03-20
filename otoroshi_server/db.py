@@ -2,7 +2,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.exc import OperationalError
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, scoped_session
 
 
 BaseModel = declarative_base()
@@ -17,7 +17,7 @@ class Db(object):
         self.app = app
         self.engine = create_engine(self.app.config.get('database', 'dsn'))
         self.session_maker = sessionmaker(bind=self.engine)
-        self.session = self.session_maker()
+        self.session = scoped_session(self.session_maker)
 
     def drop_all(self):
         try:
