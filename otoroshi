@@ -14,9 +14,9 @@ app.config.from_env('OTOROSHI_CONFIG')
 
 
 def command_init():
-    app.db.init_app(app)
-    app.db.drop_all()
-    app.db.create_all()
+    app.database.init_app(app)
+    app.database.drop_all()
+    app.database.create_all()
 
 
 def command_run():
