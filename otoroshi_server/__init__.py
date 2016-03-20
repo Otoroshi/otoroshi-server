@@ -1,12 +1,15 @@
 # -*- coding: utf-8 -*-
+""" Otoroshi Server is the main component of an Otoroshi Network. It provides
+some management methods (for listeners, card reader ...), when a reader ask for
+interaction the server verify access of the card and trigger the associated
+actuator.
+"""
 from os import environ
 
 from autobahn.twisted.wamp import ApplicationRunner
-from sqlalchemy import create_engine
-from .config import Config
 from .component import ComponentManager
+from .config import Config
 from .db import Db
-from .model import *
 
 
 class Otoroshi(object):
@@ -20,11 +23,15 @@ class Otoroshi(object):
         from otoroshi_server import Otoroshi
         app = Otoroshi()
     """
+    application = None
     config = Config()
-    db = Db()
+    database = Db()
 
     def run(self):
-        self.db.init_app(self)
+        """ Start the database connection and run the autobahn application with
+        component manager.
+        """
+        self.database.init_app(self)
         self.application = ApplicationRunner(
             self.config.get('autobahn', 'rooter'),
             self.config.get('autobahn', 'realm'),

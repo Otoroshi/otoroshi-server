@@ -8,4 +8,4 @@ class Component(object):
     """
     def __init__(self, app):
         self._app = app
-        self._session = self._app.db.session
+        self._session = self._app.database.session
