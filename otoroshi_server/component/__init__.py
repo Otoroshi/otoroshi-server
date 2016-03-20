@@ -5,6 +5,7 @@ from twisted.internet.defer import inlineCallbacks
 from twisted.python.failure import Failure
 from .interact import InteractComponent
 from .listener import ListenerComponent
+from .actuator import ActuatorComponent
 
 
 class ComponentManager(ApplicationSession):
@@ -27,7 +28,7 @@ class ComponentManager(ApplicationSession):
 
     @inlineCallbacks
     def register_all(self):
-        components = [InteractComponent, ListenerComponent]
+        components = [InteractComponent, ListenerComponent, ActuatorComponent]
         for component in components:
             command = yield self.register(
                 component(self.config.extra['app']))

@@ -29,3 +29,19 @@ class Listener(BaseModel):
             "id": self.id,
             "name": self.name
         })
+
+
+class Actuator(BaseModel):
+    __tablename__ = 'actuators'
+
+    id = Column(String(32), primary_key=True)
+    name = Column(String)
+
+    def __repr__(self):
+        return "<Actuator('%s', '%s')>" % (self.id, self.name)
+
+    def to_json(self):
+        return json.dumps({
+            "id": self.id,
+            "name": self.name
+        })
