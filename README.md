@@ -18,20 +18,8 @@ pip install -r requirements.txt
 
 A config file need to be created, an example is provided (**config.dist.ini**).
 
-To run the server, you can create a script as follow :
-
+To run the server, use the provided script as follow :
 ```
-from otoroshi_server import Otoroshi
-
-app = Otoroshi()
-app.config.from_env('OTOROSHI_CONFIG')
-app.run()
-```
-
-or use the provided script as follow :
-```
-# Create the database
-env OTOROSHI_CONFIG=./config.ini ./otoroshi init
 # Run the server
-env OTOROSHI_CONFIG=./config.ini ./otoroshi run
+env OTOROSHI_CONFIG=./config.ini ./bin/crossbar start
 ```

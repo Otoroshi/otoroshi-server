@@ -1,0 +1,71 @@
+{
+    "version": 2,
+    "workers": [
+        {
+            "type": "router",
+            "realms": [
+                {
+                    "name": "otoroshi",
+                    "roles": [
+                        {
+                            "name": "anonymous",
+                            "permissions": [
+                                {
+                                    "uri": "",
+                                    "match": "prefix",
+                                    "allow": {
+                                        "call": true,
+                                        "register": true,
+                                        "publish": true,
+                                        "subscribe": true
+                                    },
+                                    "disclose": {
+                                        "caller": false,
+                                        "publisher": false
+                                    },
+                                    "cache": true
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "transports": [
+                {
+                    "type": "websocket",
+                    "endpoint": {
+                        "type": "tcp",
+                        "port": 8080
+                    }
+                }
+            ]
+        },
+        {
+            "type": "container",
+            "options": {
+                "pythonpath": [
+                    ".."
+                ]
+            },
+            "components": [
+                {
+                    "type": "class",
+                    "realm": "otoroshi",
+                    "classname": "otoroshi.OtoroshiSession",
+                    "transport": {
+                        "type": "websocket",
+                        "endpoint": {
+                            "type": "tcp",
+                            "host": "127.0.0.1",
+                            "port": 8080
+                        },
+                        "url": "ws://127.0.0.1:8080/ws"
+                    },
+                    "extra": {
+                        "otoroshi_config": "OTOROSHI_CONFIG"
+                    }
+                }
+            ]
+        }
+    ]
+}

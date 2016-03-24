@@ -5,6 +5,7 @@ lib/
 lib64
 
 # Cache files
+.crossbar/node.key
 *.pyc
 *.swp
 pip-selfcheck.json

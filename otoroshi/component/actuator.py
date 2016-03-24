@@ -2,7 +2,7 @@
 import json
 from autobahn import wamp
 from .base import Component
-from otoroshi_server.model import Actuator
+from otoroshi.model import Actuator
 
 
 class ActuatorComponent(Component):

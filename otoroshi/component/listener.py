@@ -2,7 +2,7 @@
 import json
 from autobahn import wamp
 from .base import Component
-from otoroshi_server.model import Listener
+from otoroshi.model import Listener
 
 
 class ListenerComponent(Component):
