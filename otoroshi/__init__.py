@@ -4,11 +4,11 @@ from twisted.internet.defer import inlineCallbacks
 from twisted.logger import Logger
 from twisted.python.failure import Failure
 
-from .db import Db
-from .config import Config
-from component.interact import InteractComponent
-from component.listener import ListenerComponent
-from component.actuator import ActuatorComponent
+from otoroshi.db import Db
+from otoroshi.config import Config
+from otoroshi.component.interact import InteractComponent
+from otoroshi.component.listener import ListenerComponent
+from otoroshi.component.actuator import ActuatorComponent
 
 
 class OtoroshiSession(ApplicationSession):
