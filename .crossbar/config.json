@@ -8,22 +8,29 @@
                     "name": "otoroshi",
                     "roles": [
                         {
-                            "name": "anonymous",
+                            "name": "backend",
                             "permissions": [
                                 {
-                                    "uri": "",
-                                    "match": "prefix",
+                                    "uri": "*",
                                     "allow": {
                                         "call": true,
                                         "register": true,
                                         "publish": true,
-                                        "subscribe": true
-                                    },
-                                    "disclose": {
-                                        "caller": false,
-                                        "publisher": false
+                                        "subscribe": true,
+                                        "register": true
                                     },
                                     "cache": true
+                                }
+                            ]
+                        },
+                        {
+                            "name": "listener",
+                            "permissions": [
+                                {
+                                    "uri": "com.betamachine.interact",
+                                    "allow": {
+                                        "call": true
+                                    }
                                 }
                             ]
                         }
@@ -36,36 +43,32 @@
                     "endpoint": {
                         "type": "tcp",
                         "port": 8080
-                    }
+                    },
+                    "auth": {
+                        "ticket": {
+                            "type": "dynamic",
+                            "authenticator": "com.betamachine.authenticate"
+                        }
+                    },
+                    "serializers": ["json"]
                 }
-            ]
-        },
-        {
-            "type": "container",
-            "options": {
-                "pythonpath": [
-                    ".."
-                ]
-            },
+            ],
             "components": [
                 {
                     "type": "class",
                     "realm": "otoroshi",
                     "classname": "otoroshi.OtoroshiSession",
-                    "transport": {
-                        "type": "websocket",
-                        "endpoint": {
-                            "type": "tcp",
-                            "host": "127.0.0.1",
-                            "port": 8080
-                        },
-                        "url": "ws://127.0.0.1:8080/ws"
-                    },
+                    "role": "backend",
                     "extra": {
                         "otoroshi_config": "OTOROSHI_CONFIG"
                     }
                 }
-            ]
+            ],
+            "options": {
+                "pythonpath": [
+                    ".."
+                ]
+            }
         }
     ]
 }

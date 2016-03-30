@@ -9,6 +9,7 @@ from otoroshi.config import Config
 from otoroshi.component.interact import InteractComponent
 from otoroshi.component.listener import ListenerComponent
 from otoroshi.component.actuator import ActuatorComponent
+from otoroshi.component.authenticator import AuthenticatorComponent
 
 
 class OtoroshiSession(ApplicationSession):
@@ -35,7 +36,8 @@ class OtoroshiSession(ApplicationSession):
 
     @inlineCallbacks
     def register_all(self):
-        components = [InteractComponent, ListenerComponent, ActuatorComponent]
+        components = [InteractComponent, ListenerComponent, ActuatorComponent,
+                      AuthenticatorComponent]
         for component in components:
             command = yield self.register(
                 component(self))
