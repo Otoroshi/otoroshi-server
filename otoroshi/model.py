@@ -1,7 +1,19 @@
 # -*- coding: utf-8 -*-
 import json
-from sqlalchemy import Column, String
+from sqlalchemy import Column, Enum, String
 from .db import BaseModel
+
+
+class Account(BaseModel):
+    __tablename__ = 'accounts'
+
+    username = Column(String(32), primary_key=True, nullable=False)
+    secret = Column(String, nullable=False)
+    role = Column(
+        Enum('admin', 'listener', 'actuator_manager'), nullable=False)
+
+    def __repr__(self):
+        return "<Account('%s', '%s')>" % (self.username, self.role)
 
 
 class Card(BaseModel):
