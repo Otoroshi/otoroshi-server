@@ -16,10 +16,21 @@
                                         "call": true,
                                         "register": true,
                                         "publish": true,
-                                        "subscribe": true,
-                                        "register": true
+                                        "subscribe": true
                                     },
                                     "cache": true
+                                }
+                            ]
+                        },
+                        {
+                            "name": "admin",
+                            "permissions": [
+                                {
+                                    "uri": "*",
+                                    "allow": {
+                                        "call": true,
+                                        "subscribe": true
+                                    }
                                 }
                             ]
                         },
@@ -33,6 +44,10 @@
                                     }
                                 }
                             ]
+                        },
+                        {
+                            "name": "actuator_manager",
+                            "authorizer": "com.betamachine.authorizer.actuator_manager"
                         }
                     ]
                 }
