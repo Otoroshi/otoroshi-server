@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import json
-from sqlalchemy import Column, Enum, String
+import sqlalchemy
+from sqlalchemy.orm import relationship
+from sqlalchemy import Column, Enum, ForeignKey, String
 from .db import BaseModel
 
 
@@ -32,9 +34,28 @@ class Listener(BaseModel):
 
     id = Column(String(32), primary_key=True)
     name = Column(String)
+    actuator_id = Column(
+        String(32), ForeignKey('actuators.id'), nullable=False)
+    actuator = relationship('Actuator')
 
     def __repr__(self):
         return "<Listener('%s', '%s')>" % (self.id, self.name)
+
+    def to_json(self):
+        return json.dumps({
+            "id": self.id,
+            "name": self.name
+        })
+
+
+class ActuatorManager(BaseModel):
+    __tablename__ = 'actuator_managers'
+
+    id = Column(String(32), primary_key=True)
+    name = Column(String)
+
+    def __repr__(self):
+        return "<ActuatorManager('%s', '%s')>" % (self.id, self.name)
 
     def to_json(self):
         return json.dumps({
@@ -48,12 +69,11 @@ class Actuator(BaseModel):
 
     id = Column(String(32), primary_key=True)
     name = Column(String)
+    actuator_manager_id = Column(
+        String(32), ForeignKey('actuator_managers.id'),
+        nullable=False)
+    actuator_manager = relationship('ActuatorManager')
 
     def __repr__(self):
-        return "<Actuator('%s', '%s')>" % (self.id, self.name)
-
-    def to_json(self):
-        return json.dumps({
-            "id": self.id,
-            "name": self.name
-        })
+        return "Actuator('%s', '%s', '%s')>" % (
+            self.id, self.name, self.actuator_manager.name)
