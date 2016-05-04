@@ -3,7 +3,7 @@ import re
 
 from autobahn import wamp
 
-from .base import Component
+from otoroshi.component import Component
 from otoroshi.model import Account, Actuator
 
 

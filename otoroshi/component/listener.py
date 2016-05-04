@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import json
 from autobahn import wamp
-from .base import Component
+from otoroshi.component import Component
 from otoroshi.model import Listener
 
 

@@ -2,7 +2,7 @@
 from autobahn import wamp
 from autobahn.wamp.exception import ApplicationError
 
-from .base import Component
+from otoroshi.component import Component
 from otoroshi.model import Account
 
 

@@ -3,7 +3,7 @@ from autobahn import wamp
 from autobahn.wamp.types import RegisterOptions
 from autobahn.wamp.exception import ApplicationError
 
-from .base import Component
+from otoroshi.component import Component
 from otoroshi.model import Card, Listener
 
 
