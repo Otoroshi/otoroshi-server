@@ -46,8 +46,8 @@
                             ]
                         },
                         {
-                            "name": "actuator_manager",
-                            "authorizer": "com.betamachine.authorizer.actuator_manager"
+                            "name": "actuator",
+                            "authorizer": "com.betamachine.authorizer.actuator"
                         }
                     ]
                 }
