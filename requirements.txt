@@ -1,2 +1,2 @@
-crossbar[all]
+crossbar
 sqlalchemy
