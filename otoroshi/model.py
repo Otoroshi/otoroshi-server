@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
+
 import json
-import sqlalchemy
-from sqlalchemy.orm import relationship
-from sqlalchemy import Column, Enum, ForeignKey, String
-from .db import BaseModel
+
+from sqlalchemy import Column, Enum, ForeignKey, String  # pylint: disable=F0401
+from sqlalchemy.orm import relationship  # pylint: disable=F0401
+
+from otoroshi.db import BaseModel
 
 
-class Account(BaseModel):
+class Account(BaseModel):  # pylint: disable=R0903,W0232
     __tablename__ = 'accounts'
 
     username = Column(String(32), primary_key=True, nullable=False)
@@ -18,10 +20,10 @@ class Account(BaseModel):
         return "<Account('%s', '%s')>" % (self.username, self.role)
 
 
-class Card(BaseModel):
+class Card(BaseModel):  # pylint: disable=R0903,W0232
     __tablename__ = 'cards'
 
-    id = Column(String(32), primary_key=True)
+    id = Column(String(32), primary_key=True)  # pylint: disable=C0103
     shortname = Column(String)
     fullname = Column(String)
 
@@ -29,10 +31,10 @@ class Card(BaseModel):
         return "<Card('%s','%s')>" % (self.id, self.fullname)
 
 
-class Listener(BaseModel):
+class Listener(BaseModel):  # pylint: disable=R0903,W0232
     __tablename__ = 'listeners'
 
-    id = Column(String(32), primary_key=True)
+    id = Column(String(32), primary_key=True)  # pylint: disable=C0103
     name = Column(String)
     actuator_id = Column(
         String(32), ForeignKey('actuators.id'), nullable=False)
@@ -52,10 +54,10 @@ class Listener(BaseModel):
         })
 
 
-class Actuator(BaseModel):
+class Actuator(BaseModel):  # pylint: disable=R0903,W0232
     __tablename__ = 'actuators'
 
-    id = Column(String(32), primary_key=True)
+    id = Column(String(32), primary_key=True)  # pylint: disable=C0103
     name = Column(String)
     account_username = Column(
         String(32), ForeignKey('accounts.username'), nullable=False)

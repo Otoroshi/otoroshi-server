@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-import json
+
 from autobahn import wamp
+
 from otoroshi.component import Component
 from otoroshi.model import Actuator
 
@@ -14,7 +15,7 @@ class ActuatorComponent(Component):
         return [a.to_json() for a in actuators]
 
     @wamp.register(u'com.betamachine.actuator.create')
-    def create(self, id, name):
+    def create(self, id, name):  # pylint: disable=C0103,W0622
         """ Create an actuator
         """
         actuator = Actuator(id=id, name=name)
@@ -23,7 +24,7 @@ class ActuatorComponent(Component):
         return True
 
     @wamp.register(u'com.betamachine.actuator.delete')
-    def delete(self, id):
+    def delete(self, id):  # pylint: disable=C0103,W0622
         """ Delete an actuator from the database
         """
         actuator = self._session.query(Actuator).filter(Actuator.id == id)

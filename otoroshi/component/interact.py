@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
+
 from autobahn import wamp
-from autobahn.wamp.types import RegisterOptions
 from autobahn.wamp.exception import ApplicationError
+from autobahn.wamp.types import RegisterOptions
 
 from otoroshi.component import Component
 from otoroshi.model import Card, Listener
 
 
-class InteractComponent(Component):
-    _REGISTER_OPTIONS = RegisterOptions(details_arg='details')
+class InteractComponent(Component):  # pylint: disable=R0903
+    REGISTER_OPTIONS = RegisterOptions(details_arg='details')
 
     @wamp.register(u'com.betamachine.interact')
     def interact(self, args, details=None):

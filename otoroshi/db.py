@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
-from sqlalchemy import create_engine
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.exc import OperationalError
-from sqlalchemy.orm import sessionmaker, scoped_session
+
+from sqlalchemy import create_engine  # pylint: disable=F0401
+from sqlalchemy.exc import OperationalError  # pylint: disable=F0401
+from sqlalchemy.ext.declarative import declarative_base  # pylint: disable=F0401
+from sqlalchemy.orm import scoped_session, sessionmaker  # pylint: disable=F0401
 
 
-BaseModel = declarative_base()
+BaseModel = declarative_base()  # pylint: disable=C0103
 
 
 class Db(object):

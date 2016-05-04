@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 import re
 
 from autobahn import wamp
@@ -7,9 +8,9 @@ from otoroshi.component import Component
 from otoroshi.model import Account, Actuator
 
 
-class AuthorizerComponent(Component):
+class AuthorizerComponent(Component):  # pylint: disable=R0903
     @wamp.register(u'com.betamachine.authorizer.actuator')
-    def authorize_actuator(self, session, uri, action):
+    def authorize_actuator(self, session, uri, action):  # pylint: disable=W0613
         account = self._session.query(Account).filter(
             Account.username == session['authid']).one()
         actuator = self._session.query(Actuator).filter(

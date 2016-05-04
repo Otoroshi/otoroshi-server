@@ -1,16 +1,17 @@
 # -*- coding: utf-8 -*-
+
 from autobahn.twisted.wamp import ApplicationSession
 from twisted.internet.defer import inlineCallbacks
 from twisted.logger import Logger
 from twisted.python.failure import Failure
 
-from otoroshi.db import Db
 from otoroshi.config import Config
-from otoroshi.component.interact import InteractComponent
-from otoroshi.component.listener import ListenerComponent
 from otoroshi.component.actuator import ActuatorComponent
 from otoroshi.component.authenticator import AuthenticatorComponent
 from otoroshi.component.authorizer import AuthorizerComponent
+from otoroshi.component.interact import InteractComponent
+from otoroshi.component.listener import ListenerComponent
+from otoroshi.db import Db
 
 
 class OtoroshiSession(ApplicationSession):
@@ -42,5 +43,5 @@ class OtoroshiSession(ApplicationSession):
         for component in components:
             command = yield self.register(
                 component(self),
-                options=component._REGISTER_OPTIONS)
+                options=component.REGISTER_OPTIONS)
             self.commands.extend(command)

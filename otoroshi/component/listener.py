@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-import json
+
 from autobahn import wamp
+
 from otoroshi.component import Component
 from otoroshi.model import Listener
 
@@ -14,7 +15,7 @@ class ListenerComponent(Component):
         return [l.to_json() for l in listeners]
 
     @wamp.register(u'com.betamachine.listener.create')
-    def create(self, id, name):
+    def create(self, id, name):  # pylint: disable=C0103,W0622
         """ Create a listener
         """
         listener = Listener(id=id, name=name)
@@ -23,7 +24,7 @@ class ListenerComponent(Component):
         return True
 
     @wamp.register(u'com.betamachine.listener.delete')
-    def delete(self, id):
+    def delete(self, id):  # pylint: disable=C0103,W0622
         """ Delete a listener from the database
         """
         listener = self._session.query(Listener).filter(Listener.id == id)

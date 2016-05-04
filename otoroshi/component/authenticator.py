@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 from autobahn import wamp
 from autobahn.wamp.exception import ApplicationError
 
@@ -6,9 +7,9 @@ from otoroshi.component import Component
 from otoroshi.model import Account
 
 
-class AuthenticatorComponent(Component):
+class AuthenticatorComponent(Component):  # pylint: disable=R0903
     @wamp.register(u'com.betamachine.authenticate')
-    def authenticate(self, realm, authid, details=None):
+    def authenticate(self, realm, authid, details=None):  # pylint: disable=W0613
         account = self._session.query(Account).filter(
             Account.username == authid)
 
