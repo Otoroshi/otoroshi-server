@@ -41,5 +41,6 @@ class OtoroshiSession(ApplicationSession):
                       AuthenticatorComponent, AuthorizerComponent]
         for component in components:
             command = yield self.register(
-                component(self))
+                component(self),
+                options=component._REGISTER_OPTIONS)
             self.commands.extend(command)

@@ -41,6 +41,9 @@
                                     "uri": "com.betamachine.interact",
                                     "allow": {
                                         "call": true
+                                    },
+                                    "disclose": {
+                                        "caller": true
                                     }
                                 }
                             ]
