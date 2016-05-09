@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+""" This package provide a crossbar server for Otoroshi application.
+"""
 
 from autobahn.twisted.wamp import ApplicationSession
 from twisted.internet.defer import inlineCallbacks
@@ -15,11 +17,23 @@ from otoroshi.db import Db
 
 
 class OtoroshiSession(ApplicationSession):
+    """ Main Otoroshi Server component, this component is in charge of
+    registering all the commands and surcharging default behaviors.
+    """
     commands = []
     log = Logger()
     otoroshi_config = Config()
 
     def __init__(self, config=None):
+        """ Initialize the Otoroshi server, called on startup it load
+        the configuration and the database.
+
+        Args:
+            config (str): Name of the ENV variable which contain the config file path.
+
+        Raise:
+            RuntimeError: If an invalid configuration file was provided.
+        """
         ApplicationSession.__init__(self, config)
         self.otoroshi_config.from_env(config.extra['otoroshi_config'])
 
@@ -27,6 +41,11 @@ class OtoroshiSession(ApplicationSession):
 
     @inlineCallbacks
     def onJoin(self, details):
+        """ Called when the router has been started.
+
+        Args:
+            details (autobahn.wamp.types.SessionDetails): WAMP Session details.
+        """
         yield self.register_all()
 
         for command in self.commands:
@@ -38,6 +57,8 @@ class OtoroshiSession(ApplicationSession):
 
     @inlineCallbacks
     def register_all(self):
+        """ Register all the components needed to run Otoroshi properly.
+        """
         components = [InteractComponent, ListenerComponent, ActuatorComponent,
                       AuthenticatorComponent, AuthorizerComponent]
         for component in components:

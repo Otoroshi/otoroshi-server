@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
+""" The component package provide components that expose some functionnality
+like authorization, management or all the features exposed to the Otoroshi
+network.
+"""
 
 
 class Component(object):  # pylint: disable=R0903
@@ -9,5 +13,12 @@ class Component(object):  # pylint: disable=R0903
     REGISTER_OPTIONS = None
 
     def __init__(self, app):
+        """ When the component is constructed, some private properties
+        are created to ease the component developpment. For example, it
+        expose the app context and the database session object.
+
+        Args:
+            app (otoroshi.OtoroshiSession): The Otoroshi application session.
+        """
         self._app = app
         self._session = self._app.database.session
