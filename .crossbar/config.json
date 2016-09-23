@@ -38,7 +38,7 @@
                             "name": "listener",
                             "permissions": [
                                 {
-                                    "uri": "com.betamachine.interact",
+                                    "uri": "io.otoroshi.interact",
                                     "allow": {
                                         "call": true
                                     },
@@ -50,7 +50,7 @@
                         },
                         {
                             "name": "actuator",
-                            "authorizer": "com.betamachine.authorizer.actuator"
+                            "authorizer": "io.otoroshi.authorizer.actuator"
                         }
                     ]
                 }
@@ -65,7 +65,7 @@
                     "auth": {
                         "ticket": {
                             "type": "dynamic",
-                            "authenticator": "com.betamachine.authenticate"
+                            "authenticator": "io.otoroshi.authenticate"
                         }
                     },
                     "serializers": ["json"]

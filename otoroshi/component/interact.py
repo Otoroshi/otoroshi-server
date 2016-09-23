@@ -17,7 +17,7 @@ class InteractComponent(Component):  # pylint: disable=R0903
     """
     REGISTER_OPTIONS = RegisterOptions(details_arg='details')
 
-    @wamp.register(u'com.betamachine.interact')
+    @wamp.register(u'io.otoroshi.interact')
     def interact(self, args, details=None):
         """ The interact procedure is called when a client interact with
         a listener, if the client has the correct access right the actuator
@@ -29,8 +29,8 @@ class InteractComponent(Component):  # pylint: disable=R0903
 
         Raise:
             ApplicationError: An application error if the authentication
-            failed (com.betamachine.authenticate_card.failed as error) or if
-            the interact method got a problem (com.betamachine.interact.failed
+            failed (io.otoroshi.authenticate_card.failed as error) or if
+            the interact method got a problem (io.otoroshi.interact.failed
             as error).
         """
         try:
@@ -50,7 +50,7 @@ class InteractComponent(Component):  # pylint: disable=R0903
         try:
             # Try to interact with the actuator associated to the listener.
             print "AUTH Request to %s(%s) from %s" % (listener.actuator, listener, card)
-            yield self._app.call('com.betamachine.actuator.%s.%s.toggle' % (
+            yield self._app.call('io.otoroshi.actuator.%s.%s.toggle' % (
                 listener.actuator.account_username, listener.actuator_channel))
         except:
-            raise ApplicationError("com.betamachine.interact.failed")
+            raise ApplicationError("io.otoroshi.interact.failed")

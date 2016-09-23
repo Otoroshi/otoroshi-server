@@ -14,7 +14,7 @@ class AuthenticatorComponent(Component):  # pylint: disable=R0903
     """ AuthenticatorComponent is responsible of the authentication in
     the crossbar network.
     """
-    @wamp.register(u'com.betamachine.authenticate')
+    @wamp.register(u'io.otoroshi.authenticate')
     def authenticate(self, realm, authid, details=None):  # pylint: disable=W0613
         """ This method is exposed though RPC as a procedure is called by all
         the node trying to join the network. The provided account will
@@ -45,5 +45,5 @@ class AuthenticatorComponent(Component):  # pylint: disable=R0903
                 return account_obj.role
 
         raise ApplicationError(
-            "com.betamachine.auth_failed",
+            "io.otoroshi.auth_failed",
             "could not authenticate session for {}".format(authid))

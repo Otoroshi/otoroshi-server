@@ -7,14 +7,14 @@ from otoroshi.model import Listener
 
 
 class ListenerComponent(Component):
-    @wamp.register(u'com.betamachine.listener.list')
+    @wamp.register(u'io.otoroshi.listener.list')
     def list(self):
         """ List all registered listeners
         """
         listeners = self._session.query(Listener).all()
         return [l.to_json() for l in listeners]
 
-    @wamp.register(u'com.betamachine.listener.create')
+    @wamp.register(u'io.otoroshi.listener.create')
     def create(self, id, name):  # pylint: disable=C0103,W0622
         """ Create a listener
         """
@@ -23,7 +23,7 @@ class ListenerComponent(Component):
         self._session.commit()
         return True
 
-    @wamp.register(u'com.betamachine.listener.delete')
+    @wamp.register(u'io.otoroshi.listener.delete')
     def delete(self, id):  # pylint: disable=C0103,W0622
         """ Delete a listener from the database
         """

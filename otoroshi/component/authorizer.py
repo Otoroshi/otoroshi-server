@@ -22,12 +22,12 @@ class AuthorizerComponent(Component):  # pylint: disable=R0903
     The authorizer assigned to node is defined by their role in the
     configuration of crossbar.
     """
-    @wamp.register(u'com.betamachine.authorizer.actuator')
+    @wamp.register(u'io.otoroshi.authorizer.actuator')
     def authorize_actuator(self, session, uri, action):  # pylint: disable=W0613
         """ This method is used to authorize actuator to register their
         procedure to interact with channels. Each actuator can only register
         procedure that follow theses rules :
-            - the procedure name must begin with 'com.betamachine.actuator',
+            - the procedure name must begin with 'io.otoroshi.actuator',
             - followed by the account username of the node,
             - followed by high, low or toggle.
 
@@ -46,7 +46,7 @@ class AuthorizerComponent(Component):  # pylint: disable=R0903
             Actuator.account_username == account.username).one()
 
         has_right = re.findall(
-            r'^com\.betamachine\.actuator\.{}\.(?:.+)\.(high|low|toggle)$'.format(
+            r'^io\.otoroshi\.actuator\.{}\.(?:.+)\.(high|low|toggle)$'.format(
                 actuator.account_username), uri)
         if len(has_right) > 0:
             print "Actuator {} successfully registered {} procedure".format(
