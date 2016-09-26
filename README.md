@@ -21,5 +21,5 @@ A config file need to be created, an example is provided (**config.dist.ini**).
 To run the server, use the provided script as follow :
 ```
 # Run the server
-env OTOROSHI_CONFIG=./config.ini ./bin/crossbar start
+env OTOROSHI_CONFIG=../config.ini ./bin/crossbar start
 ```
