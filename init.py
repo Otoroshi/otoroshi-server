@@ -12,7 +12,7 @@ if __name__ == '__main__':
     config.from_env('OTOROSHI_CONFIG')
     database = Db(config)
 
-    print "Creating database ..."
+    print("Creating database ...")
     database.drop_all()
     database.create_all()
 
@@ -65,4 +65,4 @@ if __name__ == '__main__':
         ))
         database.session.commit()
 
-    print "Database created"
+    print("Database created")

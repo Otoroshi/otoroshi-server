@@ -40,7 +40,7 @@ class OtoroshiSession(ApplicationSession):
         self.database = Db(self.otoroshi_config)
 
     @inlineCallbacks
-    def onJoin(self, details):
+    def onJoin(self, details):  # pylint: disable=C0103,W0613
         """ Called when the router has been started.
 
         Args:
@@ -50,10 +50,10 @@ class OtoroshiSession(ApplicationSession):
 
         for command in self.commands:
             if isinstance(command, Failure):
-                print "Failed to register procedure: %s" % command
+                print("Failed to register procedure: {}".format(command))
             else:
-                print "registration ID %s: %s" % (
-                    command.id, command.procedure)
+                print("registration ID {}: {}".format(
+                    command.id, command.procedure))
 
     @inlineCallbacks
     def register_all(self):
@@ -62,7 +62,7 @@ class OtoroshiSession(ApplicationSession):
         components = [InteractComponent, ListenerComponent, ActuatorComponent,
                       AuthenticatorComponent, AuthorizerComponent]
         for component in components:
-            command = yield self.register(
+            command = yield self.register(  # pylint: disable=E1101
                 component(self),
                 options=component.REGISTER_OPTIONS)
             self.commands.extend(command)

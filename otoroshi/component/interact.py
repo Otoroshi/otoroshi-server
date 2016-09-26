@@ -49,7 +49,7 @@ class InteractComponent(Component):  # pylint: disable=R0903
 
         try:
             # Try to interact with the actuator associated to the listener.
-            print "AUTH Request to %s(%s) from %s" % (listener.actuator, listener, card)
+            print("AUTH Request to %s(%s) from %s" % (listener.actuator, listener, card))
             yield self._app.call('io.otoroshi.actuator.%s.%s.toggle' % (
                 listener.actuator.account_username, listener.actuator_channel))
         except:

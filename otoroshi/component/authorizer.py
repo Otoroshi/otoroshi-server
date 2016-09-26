@@ -49,9 +49,10 @@ class AuthorizerComponent(Component):  # pylint: disable=R0903
             r'^io\.otoroshi\.actuator\.{}\.(?:.+)\.(high|low|toggle)$'.format(
                 actuator.account_username), uri)
         if len(has_right) > 0:
-            print "Actuator {} successfully registered {} procedure".format(
-                actuator, uri)
+            print("Actuator {} successfully registered {} procedure".format(
+                actuator, uri))
             return True
 
-        print "Actuator {} failed to register {} procedure".format(actuator, uri)
+        print("Actuator {} failed to register {} procedure".format(
+            actuator, uri))
         return False

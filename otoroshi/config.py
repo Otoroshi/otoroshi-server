@@ -3,7 +3,7 @@
 """
 
 import codecs
-from ConfigParser import SafeConfigParser
+from configparser import SafeConfigParser
 import os
 
 
