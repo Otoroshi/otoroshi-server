@@ -1,8 +1,5 @@
 # Virtualenv
-bin/
-include/
-lib/
-lib64
+.venv
 
 # Cache files
 .crossbar/node.key
